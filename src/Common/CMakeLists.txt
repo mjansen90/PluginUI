@@ -1,18 +1,25 @@
 cmake_minimum_required(VERSION 2.6)
 
-project(App)
+project(Common)
 
-set(GRP_SRCS
-   main.cpp
+set(COMMON_MOC_SRCS
+   Page.h
 )
 
-include_directories(..)
-include_directories(../../inc)
-include_directories(../../inc-ext)
-include_directories(../../inc/Common)
-include_directories(../../inc/ptree_export)
+set(COMMON_SRCS
+   ${COMMON_MOC_SRCS}
+   Page.cpp
+)
 
-link_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../lib-ext)
-add_executable(App ${GRP_SRCS})
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
-target_link_libraries(App LINK_PRIVATE ptree_export)
+QT4_WRAP_CPP(COMMON_MOC_OUTFILES ${COMMON_MOC_SRCS})
+
+source_group("Generated Files" FILES ${COMMON_MOC_OUTFILES})
+
+add_library(Common SHARED
+   ${COMMON_SRCS}
+   ${COMMON_MOC_OUTFILES}
+)
+
+target_link_libraries(Common ${QT_LIBRARIES})
