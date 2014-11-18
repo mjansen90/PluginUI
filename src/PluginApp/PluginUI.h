@@ -7,6 +7,6 @@ class PluginUI : public QMainWindow
 {
    Q_OBJECT
 public:
-   PluginUI(QWidget* pParent);
+   PluginUI(QWidget* pParent = 0);
    ~PluginUI();
 };
