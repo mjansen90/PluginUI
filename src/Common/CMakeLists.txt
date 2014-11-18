@@ -3,12 +3,12 @@ cmake_minimum_required(VERSION 2.6)
 project(Common)
 
 set(COMMON_MOC_SRCS
-   Page.h
+   BasePage.h
 )
 
 set(COMMON_SRCS
    ${COMMON_MOC_SRCS}
-   Page.cpp
+   BasePage.cpp
 )
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
