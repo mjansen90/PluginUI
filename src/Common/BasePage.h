@@ -1,9 +1,11 @@
 
 #pragma once
 
+#include "Common.h"
+
 #include <QWidget>
 
-class BasePage : public QWidget
+class COMMON_EXPORT BasePage : public QWidget
 {
    Q_OBJECT
 public:

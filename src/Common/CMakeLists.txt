@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.6)
 
-project(Common)
+project(${PROJECT_NAME_COMMON})
 
 set(COMMON_MOC_SRCS
    BasePage.h
@@ -9,6 +9,7 @@ set(COMMON_MOC_SRCS
 set(COMMON_SRCS
    ${COMMON_MOC_SRCS}
    BasePage.cpp
+   Common.h
 )
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
@@ -17,9 +18,9 @@ QT4_WRAP_CPP(COMMON_MOC_OUTFILES ${COMMON_MOC_SRCS})
 
 source_group("Generated Files" FILES ${COMMON_MOC_OUTFILES})
 
-add_library(Common SHARED
+add_library(${PROJECT_NAME_COMMON} SHARED
    ${COMMON_SRCS}
    ${COMMON_MOC_OUTFILES}
 )
 
-target_link_libraries(Common ${QT_LIBRARIES})
+target_link_libraries(${PROJECT_NAME_COMMON} ${QT_LIBRARIES})

@@ -1,12 +1,12 @@
 
-#include "PluginUI.h"
+#include "PluginApp.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
    QApplication app(argc, argv);
 
-   PluginUI window;
+   PluginApp window;
    window.show();
    
    return app.exec();
