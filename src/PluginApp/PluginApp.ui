@@ -33,9 +33,56 @@
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="m_pMenuActions">
+    <property name="title">
+     <string>Actions</string>
+    </property>
+    <addaction name="m_pActionLoadPlugins"/>
+    <addaction name="m_pActionAddTabs"/>
+    <addaction name="m_pActionInitializePages"/>
+    <addaction name="m_pActionExit"/>
+   </widget>
+   <addaction name="m_pMenuActions"/>
   </widget>
   <widget class="QStatusBar" name="m_pStatusBar"/>
+  <action name="m_pActionLoadPlugins">
+   <property name="text">
+    <string>Load Plugins</string>
+   </property>
+  </action>
+  <action name="m_pActionAddTabs">
+   <property name="text">
+    <string>Add Tabs</string>
+   </property>
+  </action>
+  <action name="m_pActionInitializePages">
+   <property name="text">
+    <string>Initialize Pages</string>
+   </property>
+  </action>
+  <action name="m_pActionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>m_pActionExit</sender>
+   <signal>triggered()</signal>
+   <receiver>PluginUI</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

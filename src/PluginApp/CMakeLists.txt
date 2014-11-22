@@ -33,5 +33,4 @@ add_executable(${PROJECT_NAME_PLUGINAPP}
 
 target_link_libraries(${PROJECT_NAME_PLUGINAPP}
    ${QT_LIBRARIES}
-   ${PROJECT_NAME_SAMPLEPAGE}
 )
