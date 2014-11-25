@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QMap>
+#include <QSignalMapper>
 
 class BasePage;
 class Ui_PluginUI;
@@ -15,17 +16,19 @@ public:
    ~PluginApp();
 
 protected:
-   void AddTabs();
+   void AddAllTabs();
+   void AddTab(const QString& pageName);
    void InitPages();
    void LoadAllPlugins();
    void LoadPlugin(const QString& plugin);
 
 protected slots:
-   void OnActionAddTabs();
+   void OnActionAddTab(QString pageName);
    void OnActionInitPages();
    void OnActionLoadPlugin();
 
 private:
    Ui_PluginUI*               m_pUI;
    QMap<QString, BasePage*>   m_PageMap;
+   QSignalMapper*             m_pSignalMapper;
 };

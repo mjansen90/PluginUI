@@ -40,8 +40,14 @@
     <property name="title">
      <string>Actions</string>
     </property>
+    <widget class="QMenu" name="m_pMenuAddTabs">
+     <property name="title">
+      <string>Add Tabs</string>
+     </property>
+     <addaction name="m_pActionEmpty"/>
+    </widget>
     <addaction name="m_pActionLoadPlugin"/>
-    <addaction name="m_pActionAddTabs"/>
+    <addaction name="m_pMenuAddTabs"/>
     <addaction name="m_pActionInitializePages"/>
     <addaction name="m_pActionExit"/>
    </widget>
@@ -53,11 +59,6 @@
     <string>Load Plugin...</string>
    </property>
   </action>
-  <action name="m_pActionAddTabs">
-   <property name="text">
-    <string>Add Tabs</string>
-   </property>
-  </action>
   <action name="m_pActionInitializePages">
    <property name="text">
     <string>Initialize Pages</string>
@@ -66,6 +67,14 @@
   <action name="m_pActionExit">
    <property name="text">
     <string>Exit</string>
+   </property>
+  </action>
+  <action name="m_pActionEmpty">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&lt;empty&gt;</string>
    </property>
   </action>
  </widget>
