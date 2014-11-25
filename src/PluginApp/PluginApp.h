@@ -17,12 +17,13 @@ public:
 protected:
    void AddTabs();
    void InitPages();
-   void LoadPlugins();
+   void LoadAllPlugins();
+   void LoadPlugin(const QString& plugin);
 
 protected slots:
    void OnActionAddTabs();
    void OnActionInitPages();
-   void OnActionLoadPlugins();
+   void OnActionLoadPlugin();
 
 private:
    Ui_PluginUI*               m_pUI;

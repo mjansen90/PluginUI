@@ -6,6 +6,7 @@
 #include "Common/BasePage.h"
 
 #include <QDir>
+#include <QFileDialog>
 #include <QPluginLoader>
 
 // Constructor
@@ -20,7 +21,7 @@ PluginApp::PluginApp(QWidget* pParent) :
 
    connect(m_pUI->m_pActionAddTabs, SIGNAL(triggered()), this, SLOT(OnActionAddTabs()));
    connect(m_pUI->m_pActionInitializePages, SIGNAL(triggered()), this, SLOT(OnActionInitPages()));
-   connect(m_pUI->m_pActionLoadPlugins, SIGNAL(triggered()), this, SLOT(OnActionLoadPlugins()));
+   connect(m_pUI->m_pActionLoadPlugin, SIGNAL(triggered()), this, SLOT(OnActionLoadPlugin()));
 }
 
 // Destructor
@@ -38,7 +39,36 @@ void PluginApp::InitPages()
    }
 }
 
-void PluginApp::LoadPlugins()
+void PluginApp::LoadPlugin(const QString& plugin)
+{
+   QPluginLoader loader(plugin);
+   if (QObject* pPlugin = loader.instance())
+   {
+      if (BasePage* pPage = qobject_cast<BasePage*>(pPlugin))
+      {
+         if (!m_PageMap.contains(pPage->Description()))
+         {
+            qWarning("Loaded %s", pPage->Description().toAscii().constData());
+            m_PageMap[pPage->Description()] = pPage;
+            m_pUI->m_pActionAddTabs->setEnabled(true);
+         }
+         else
+         {
+            qWarning("%s plugin already loaded!", pPage->Description().toAscii().constData());
+         }
+      }
+      else
+      {
+         qWarning("%s is not a BasePage", plugin.toAscii().constData());
+      }
+   }
+   else
+   {
+      qWarning("%s is not a Qt Plugin", plugin.toAscii().constData());
+   }
+}
+
+void PluginApp::LoadAllPlugins()
 {
    QDir pluginsDir(qApp->applicationDirPath());
    qWarning("Plugin Dir %s", pluginsDir.absolutePath().toAscii().constData());
@@ -47,33 +77,8 @@ void PluginApp::LoadPlugins()
    pluginsDir.cd("plugins");
    foreach (QString file, pluginsDir.entryList(QDir::Files))
    {
-      QPluginLoader loader(pluginsDir.absoluteFilePath(file));
-      if (QObject* pPlugin = loader.instance())
-      {
-         if (BasePage* pPage = qobject_cast<BasePage*>(pPlugin))
-         {
-            if (!m_PageMap.contains(pPage->Description()))
-            {
-               qWarning("Loaded %s", pPage->Description().toAscii().constData());
-               m_PageMap[pPage->Description()] = pPage;
-            }
-            else
-            {
-               qWarning("%s plugin already loaded!", pPage->Description().toAscii().constData());
-            }
-         }
-         else
-         {
-            qWarning("%s is not a BasePage", file.toAscii().constData());
-         }
-      }
-      else
-      {
-         qWarning("%s is not a Qt Plugin", file.toAscii().constData());
-      }
+      LoadPlugin(file);
    }
-
-   m_pUI->m_pActionAddTabs->setEnabled(!m_PageMap.empty());
 }
 
 void PluginApp::AddTabs()
@@ -105,7 +110,7 @@ void PluginApp::OnActionInitPages()
    InitPages();
 }
 
-void PluginApp::OnActionLoadPlugins()
+void PluginApp::OnActionLoadPlugin()
 {
-   LoadPlugins();
+   LoadPlugin(QFileDialog::getOpenFileName(0, "Select plugin to load", qApp->applicationDirPath(), "Base Pages (*.dll)"));
 }

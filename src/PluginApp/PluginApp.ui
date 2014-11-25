@@ -20,6 +20,9 @@
       <property name="currentIndex">
        <number>-1</number>
       </property>
+      <property name="tabsClosable">
+       <bool>true</bool>
+      </property>
      </widget>
     </item>
    </layout>
@@ -37,7 +40,7 @@
     <property name="title">
      <string>Actions</string>
     </property>
-    <addaction name="m_pActionLoadPlugins"/>
+    <addaction name="m_pActionLoadPlugin"/>
     <addaction name="m_pActionAddTabs"/>
     <addaction name="m_pActionInitializePages"/>
     <addaction name="m_pActionExit"/>
@@ -45,9 +48,9 @@
    <addaction name="m_pMenuActions"/>
   </widget>
   <widget class="QStatusBar" name="m_pStatusBar"/>
-  <action name="m_pActionLoadPlugins">
+  <action name="m_pActionLoadPlugin">
    <property name="text">
-    <string>Load Plugins</string>
+    <string>Load Plugin...</string>
    </property>
   </action>
   <action name="m_pActionAddTabs">
