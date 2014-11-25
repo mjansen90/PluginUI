@@ -46,7 +46,7 @@
      </property>
      <addaction name="m_pActionEmpty"/>
     </widget>
-    <addaction name="m_pActionLoadPlugin"/>
+    <addaction name="m_pActionLoadPlugins"/>
     <addaction name="m_pMenuAddTabs"/>
     <addaction name="m_pActionInitializePages"/>
     <addaction name="m_pActionExit"/>
@@ -54,9 +54,9 @@
    <addaction name="m_pMenuActions"/>
   </widget>
   <widget class="QStatusBar" name="m_pStatusBar"/>
-  <action name="m_pActionLoadPlugin">
+  <action name="m_pActionLoadPlugins">
    <property name="text">
-    <string>Load Plugin...</string>
+    <string>Load Plugins...</string>
    </property>
   </action>
   <action name="m_pActionInitializePages">
