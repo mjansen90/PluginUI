@@ -26,6 +26,7 @@ protected slots:
    void OnActionAddTab(QString pageName);
    void OnActionInitPages();
    void OnActionLoadPlugin();
+   void OnTabClosed(int index);
 
 private:
    Ui_PluginUI*               m_pUI;

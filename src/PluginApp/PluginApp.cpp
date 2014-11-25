@@ -19,6 +19,7 @@ PluginApp::PluginApp(QWidget* pParent) :
 
    connect(m_pUI->m_pActionInitializePages, SIGNAL(triggered()), this, SLOT(OnActionInitPages()));
    connect(m_pUI->m_pActionLoadPlugin, SIGNAL(triggered()), this, SLOT(OnActionLoadPlugin()));
+   connect(m_pUI->m_pTabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(OnTabClosed(int)));
 
    connect(m_pSignalMapper, SIGNAL(mapped(QString)), this, SLOT(OnActionAddTab(QString)));
 }
@@ -127,4 +128,9 @@ void PluginApp::OnActionInitPages()
 void PluginApp::OnActionLoadPlugin()
 {
    LoadPlugin(QFileDialog::getOpenFileName(0, "Select plugin to load", qApp->applicationDirPath(), "Base Pages (*.dll)"));
+}
+
+void PluginApp::OnTabClosed(int index)
+{
+   m_pUI->m_pTabWidget->removeTab(index);
 }
